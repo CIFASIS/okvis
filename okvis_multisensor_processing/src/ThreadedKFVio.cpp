@@ -860,13 +860,16 @@ void ThreadedKFVio::publisherLoop() {
     OptimizationResults result;
     if (optimizationResults_.PopBlocking(&result) == false)
       return;
+    
+    std::vector<cv::Mat> out_images;
+    displayImages_.PopNonBlocking(&out_images);
 
     // call all user callbacks
     if (stateCallback_ && !result.onlyPublishLandmarks)
       stateCallback_(result.stamp, result.T_WS);
     if (fullStateCallback_ && !result.onlyPublishLandmarks)
       fullStateCallback_(result.stamp, result.T_WS, result.speedAndBiases,
-                         result.omega_S);
+                         result.omega_S, out_images);
     if (fullStateCallbackWithExtrinsics_ && !result.onlyPublishLandmarks)
       fullStateCallbackWithExtrinsics_(result.stamp, result.T_WS,
                                        result.speedAndBiases, result.omega_S,

@@ -72,7 +72,8 @@ class VioInterface {
   typedef std::function<
       void(const okvis::Time &, const okvis::kinematics::Transformation &,
            const Eigen::Matrix<double, 9, 1> &,
-           const Eigen::Matrix<double, 3, 1> &)> FullStateCallback;
+           const Eigen::Matrix<double, 3, 1> &,
+           const std::vector<cv::Mat> &)> FullStateCallback;
   typedef std::function<
       void(
           const okvis::Time &,
