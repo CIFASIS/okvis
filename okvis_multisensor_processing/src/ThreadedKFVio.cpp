@@ -112,13 +112,13 @@ void ThreadedKFVio::init() {
   }
   
   // set up windows so things don't crash on Mac OS
-  if(parameters_.visualization.displayImages){
+  /*if(parameters_.visualization.displayImages){
     for (size_t im = 0; im < parameters_.nCameraSystem.numCameras(); im++) {
       std::stringstream windowname;
       windowname << "OKVIS camera " << im;
   	  cv::namedWindow(windowname.str());
     }
-  }
+  }*/
   
   startThreads();
 }
